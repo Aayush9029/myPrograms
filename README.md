@@ -13,10 +13,12 @@
 
 
 
-compress.py [compresses images] 
+> compress.py [compresses images] 
+
 ###requirements == PIL
 
-babe.py [logs into websites and does stuff automatically] (catch needs some work)
+> babe.py [logs into websites and does stuff automatically] (catch needs some work)
+
 ###requirements == pyautogui, macOS, firefox (macOs, firefox are optional but they are made for that os)
 
 
