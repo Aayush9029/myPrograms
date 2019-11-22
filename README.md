@@ -6,6 +6,6 @@
 
 > First tool: Bulk Image resizer 
 
-> Second tool: Amazon Price tracker (with smtp integration)
+> Second tool: Auto url and query opener (logs into website and searches for things)
 
-> Third tool: ...
+> Third tool: Amazon Price tracker (with smtp integration)
