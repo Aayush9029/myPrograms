@@ -1,22 +1,23 @@
 #!/usr/local/bin/python3
 
+'''note the google and youtube feature should work out of the box, spotify idk'''
+
 import pyautogui
 import os
 from sys import argv
 import time
 
-google_url = "https://accounts.google.com/signin/v2/identifier?hl=en&passive=true&continue=https%3A%2F%2Fwww.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
-school_url = "https://byod.peelschools.org/"
-school_login = ['927409@pdsb.net']  # [1] == password but env will be used
+school_url = "schoolswebsite.com"
+school_login = ['youremail@email.com']  # [1] == password but env will be used
 youtube_url = "https://www.youtube.com/results?search_query="
 google_url = "https://www.google.com/search?q="
 spotify_url = "https://open.spotify.com/"
-default_email = 'aayushpokharel36@gmail.com'
+default_email = 'youremail@email.com'
 
 
 def help():
     print('''
-babe, version 0.1
+babe, version 0.3
 
 usage: babe [peel] [-yt --youtube] [-gg --google] [-site --website]
 
