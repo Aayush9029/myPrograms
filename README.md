@@ -19,7 +19,7 @@
 
 > babe.py [logs into websites and does stuff automatically] (catch needs some work)
 
-*requirements == pyautogui, macOS, firefox (macOs, firefox are optional but they are made for that os)*
+*requirements == pyautogui, macOS, firefox (macOs, firefox are optional **will work only for that setup out of the box**)*
 
 
 
