@@ -1,46 +1,54 @@
 #!/usr/local/bin/python3
 
+# echo "\n add #!/usr/local/bin/python3 \n"
 import pyautogui
 import os
 from sys import argv
 import time
 
+
 google_url = "https://accounts.google.com/signin/v2/identifier?hl=en&passive=true&continue=https%3A%2F%2Fwww.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
 school_url = "https://byod.peelschools.org/"
-school_login = ['yourschoolemail@school.net']  # [1] == password but env will be used
+school_login = ['XXXXXXX@XXXXXXXX.XXXXXX']  # [1] == password but env will be used
 youtube_url = "https://www.youtube.com/results?search_query="
 google_url = "https://www.google.com/search?q="
 spotify_url = "https://open.spotify.com/"
-default_email = 'yourgmail@gmail.com'
+default_email = 'XXXXXXXXXX'
 
 
 def help():
     print('''
-babe, version 0.1
+babe, version 0.2
 
-usage: babe [peel] [-yt --youtube] [-gg --google] [-site --website]
+usage: babe [keyword] [name/query]
 
     peel [query]
         example: ./babe peel google docs
         example: ./babe peel classroom
 
-    youtube [query]
+    youtube [query]  login 
         example: ./babe youtube cats
-        example: ./babe yt pwediepie
+        example: ./babe yt login <--logs into yt account
 
     google [query]
         example: ./babe google duckduckgo
-        example: ./babe gg memes
+        example: ./babe gg login <--logs into google account
 
     websites [url]
         example: ./babe website google.com
         example: ./babe ws writecode.me
 
+    trello [name_of_project]
+        example: ./babe trello automation
+        example: ./babe trello app_weather
+
+    spotify [song_name]
+        example: ./babe spotify savant
+        example: ./babe trello recent
     ''')
 
 
 def clear():
-
     pyautogui.hotkey('command', 'a')
     time.sleep(0.1)
     pyautogui.hotkey('del')
@@ -90,12 +98,6 @@ def vscode(projectName):
 
     pyautogui.hotkey('command', 's')
     time.sleep(1)
-
-    pyautogui.typewrite("index.html")
-    time.sleep(0.3)
-    pyautogui.press('enter')
-
-    pyautogui.hotkey('command', 'n')
     pyautogui.typewrite('''
 
     *{
@@ -128,7 +130,6 @@ def vscode(projectName):
 def trello(projectName='Default'):
     os.system('open -a trello')
     time.sleep(2)
-
     pressTab(1)
     for i in range(4):
         pyautogui.hotkey('shift', 'tab')
@@ -159,7 +160,6 @@ def youtubeDefault():
     time.sleep(2)
     pressTab(8)
     pyautogui.press('enter')
-
     time.sleep(2)
     pyautogui.typewrite(default_email)
     pyautogui.press('enter')
@@ -195,7 +195,7 @@ def spotify(song):
     pressTab(3)
     pyautogui.press('enter')
     time.sleep(4)
-    pyautogui.typewrite('aayushpokharel36@gmail.com')
+    pyautogui.typewrite('XXXXXXXXXXXXXXXXXX@gmail.com')
     time.sleep(1)
     pyautogui.press('enter')
     time.sleep(1)
