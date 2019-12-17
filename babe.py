@@ -1,6 +1,5 @@
 #!/usr/local/bin/python3
 
-# echo "\n add #!/usr/local/bin/python3 \n"
 import pyautogui
 import os
 from sys import argv
@@ -8,17 +7,18 @@ import time
 
 
 google_url = "https://accounts.google.com/signin/v2/identifier?hl=en&passive=true&continue=https%3A%2F%2Fwww.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
-school_url = "https://byod.peelschools.org/"
-school_login = ['XXXXXXXXXXXXX@pdsb.net']  # [1] == password but env will be used
+school_url = "https://XX.XXXXXXXXX.org/"
+school_login = ['XXXXXX@XXXXXX.net']  # [1] == password but env will be used
 youtube_url = "https://www.youtube.com/results?search_query="
 google_url = "https://www.google.com/search?q="
 spotify_url = "https://open.spotify.com/"
-default_email = 'XXXXXXXXXXXXXXXXX'
+default_email = 'XXxXXXXXXXXXXXX'  # add yours 
+ifttApi = "XXXXXXXXXXXXXX/"  # add yours 
 
 
 def help():
     print('''
-babe, version 0.25
+babe, version 0.2
 
 usage: babe [keyword] [name/query]
 
@@ -34,10 +34,6 @@ usage: babe [keyword] [name/query]
         example: ./babe google duckduckgo
         example: ./babe gg login <--logs into google account
 
-    websites [url]
-        example: ./babe website google.com
-        example: ./babe ws writecode.me
-
     trello [name_of_project]
         example: ./babe trello automation
         example: ./babe trello app_weather
@@ -49,6 +45,23 @@ usage: babe [keyword] [name/query]
     code [project name]
         example: ./babe code html
         example: ./babe code web_template
+
+    clean 
+        example: ./babe clean <-- purges cache, logs.. 
+
+    ping [device]
+        example: ./babe ping iPhone 
+        example: ./babe ping phone 
+
+    lamp [state]
+        example: ./babe lamp on 
+        example: ./babe lamp off 
+
+    tv [state]
+        example: ./babe tv on 
+        example: ./babe tv off 
+
+
     ''')
 
 
@@ -59,7 +72,7 @@ def clear():
 
 
 def pressTab(number):
-    for i in range(number):
+    for _ in range(number):
         time.sleep(0.1)
         pyautogui.press('tab')
 
@@ -137,7 +150,7 @@ def trello(projectName='Default'):
     os.system('open -a trello')
     time.sleep(2)
     pressTab(1)
-    for i in range(4):
+    for _ in range(4):
         pyautogui.hotkey('shift', 'tab')
     pyautogui.press('enter')
     pressTab(2)
@@ -153,6 +166,36 @@ def trello(projectName='Default'):
     pyautogui.press('enter')
     pyautogui.typewrite('Might do')
     pyautogui.press('enter')
+
+
+def lamp(state):
+    if state == 'on':
+        state = 'lampOn'
+    else:
+        state = 'lampOff'
+
+    os.system("curl -X POST https://maker.ifttt.com/trigger/\{" +
+              state
+              + "}/with/key/" + ifttApi)
+
+
+def tv(state):
+    if state == 'on':
+        state = 'tvOn'
+    else:
+        state = 'tvOff'
+
+    os.system("curl -X POST https://maker.ifttt.com/trigger/\{" +
+              state
+              + "}/with/key/" + ifttApi)
+
+
+def ping(device):
+    if device == 'iPhone' or device == 'phone':
+        device = "ping_myiPhone"
+
+    os.system(
+        "curl -X POST https://maker.ifttt.com/trigger/\{"+device+"}/with/key/"+ifttApi)
 
 
 def googleDefault():
@@ -202,7 +245,7 @@ def spotify(song):
     pyautogui.press('enter')
     time.sleep(4)
     clear()
-    pyautogui.typewrite('XXXXXXXXXXXXXX@gmail.com')
+    pyautogui.typewrite('XXXXXXXXXXXX@gmail.com')
     time.sleep(1)
     pyautogui.press('enter')
     time.sleep(1)
@@ -255,8 +298,6 @@ elif argv[1] == 'google' or argv[1] == 'gg':
     else:
         google(argv[2])
 
-elif argv[1] == 'ws' or argv[1] == 'website' or argv[1] == 'site':
-    openUrl(argv[2])
 
 elif argv[1] == 'spotify' or argv[1] == 'spot':
     spotify(argv[2])
@@ -270,12 +311,19 @@ elif argv[1] == 'firefox':
 elif argv[1] == 'code':
     vscode(argv[2])
 
+elif argv[1] == 'lamp':
+    lamp(argv[2])
+elif argv[1] == 'ping':
+    ping(argv[2])
+
+elif argv[1] == 'tv':
+    tv(argv[2])
+
 elif argv[1] == 'clean':
     print("need root acces!")
     os.system("sudo -v")
     print(f"cleaning files..{os.getcwd()}")
     os.system("bash " + os.getcwd()+"/bin/clean.sh")
-
 
 elif argv[1] == '-h' or argv[1] == '--help':
     help()
