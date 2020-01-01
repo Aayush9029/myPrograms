@@ -11,11 +11,11 @@ sleep(1)
 
 
 def moveKeys():
-    # print('up')
-    press('up')
+    # press('up') works well for spotify 
+    press('tab')
     sleep(20)
-    # print('up')
-    press('down')
+    #press('down') spotify feature
+    press('tab')
     sleep(20)
     moveKeys()
 
