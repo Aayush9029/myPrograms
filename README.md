@@ -20,5 +20,8 @@
 
 *requirements == unix, macOS,  **will work for that setup out of the box**)*
 
+> Thrid tool: (spotautoclicker.py.) [MacOs autoclicking script prevents laptop from going to sleep] (works with netflix, youtube, spotify app that requires user input if used in backgorund for more than few hours)
+
+*requirements == brightness  **(will work without the module but some functionallity will be limited **)*
 
 
