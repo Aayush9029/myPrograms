@@ -7,13 +7,13 @@ import time
 
 
 google_url = "https://accounts.google.com/signin/v2/identifier?hl=en&passive=true&continue=https%3A%2F%2Fwww.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
-school_url = "https://XX.XXXXXXXXX.org/"
-school_login = ['XXXXXX@XXXXXX.net']  # [1] == password but env will be used
+school_url = "https://xx.xxxxxx.org/"
+school_login = ['xxxxx@xxxxx.net']  # [1] == password env 
 youtube_url = "https://www.youtube.com/results?search_query="
 google_url = "https://www.google.com/search?q="
 spotify_url = "https://open.spotify.com/"
-default_email = 'XXxXXXXXXXXXXXX'  # add yours 
-ifttApi = "XXXXXXXXXXXXXX/"  # add yours 
+default_email = 'xxxxxx' 
+ifttApi = "xxxxxxxxxxxxxxx/" 
 
 
 def help():
@@ -86,64 +86,13 @@ def openUrl(url):
     time.sleep(5)
 
 
-def vscode(projectName):
-    print('Making a starter template in desktop named', projectName)
-    where = "~/Desktop/" + projectName
-    command = "mkdir " + where
-    os.system(command)
-    os.system("code "+where)
-    time.sleep(3)
-    pyautogui.hotkey('command', 'w')
-    time.sleep(0.05)
-    pyautogui.hotkey('command', 'n')
-    pyautogui.typewrite('''
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
-</head>
-<body>
-</body>
-</html>
-    ''')
-    time.sleep(0.3)
-    pyautogui.hotkey('command', 's')
-    time.sleep(1)
-    pyautogui.typewrite('index.html')
-    pyautogui.press('enter')
-    time.sleep(1)
-    pyautogui.hotkey('command', 'n')
-    pyautogui.typewrite('''
-
-    *{
-    padding:0px;
-    margin:0px;
-
-    ''')
-    time.sleep(0.3)
-
-    pyautogui.hotkey('command', 's')
-    time.sleep(1)
-
-    pyautogui.typewrite("style.css")
-    time.sleep(0.3)
-    pyautogui.press('enter')
-    time.sleep(0.5)
-
-    pyautogui.hotkey('command', 'n')
-    time.sleep(1)
-
-    pyautogui.hotkey('command', 's')
-    time.sleep(0.3)
-
-    pyautogui.typewrite("main.js")
-    time.sleep(0.3)
-
-    pyautogui.press('enter')
+def vscode(name):
+    location = f"~/Desktop/{name}"
+    print("started setting up project in", location)
+    print("making copy of html_template.")
+    os.system(f"cp -a bin/html_template {location}")
+    print("opening project in vscode")
+    os.system(f"code {location}")
 
 
 def trello(projectName='Default'):
@@ -245,12 +194,13 @@ def spotify(song):
     pyautogui.press('enter')
     time.sleep(4)
     clear()
-    pyautogui.typewrite('XXXXXXXXXXXX@gmail.com')
+    pyautogui.typewrite('xxxxxxxxxxxxx@gmail.com')
     time.sleep(1)
     pyautogui.press('enter')
     time.sleep(1)
     pyautogui.press('enter')
     time.sleep(3)
+
 
 # login ends now music time :)
     if(song == 'recent'):
@@ -259,7 +209,7 @@ def spotify(song):
 
     else:
         # for i in range(3):
-            # time.sleep(0.25)
+        # time.sleep(0.25)
         pyautogui.hotkey('command', 't')
         pyautogui.typewrite('https://open.spotify.com/search/' + song)
         pyautogui.press('enter')
@@ -271,8 +221,6 @@ def youtube(query):
 
 def google(query):
     openUrl(google_url + query)
-
-# print(argv)
 
 
 if(len(argv) == 1):
@@ -322,6 +270,7 @@ elif argv[1] == 'tv':
 elif argv[1] == 'clean':
     print("need root acces!")
     os.system("sudo -v")
+    os.system("sudo open -a firefox")
     print(f"cleaning files..{os.getcwd()}")
     os.system("bash " + os.getcwd()+"/bin/clean.sh")
 
