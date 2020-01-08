@@ -7,13 +7,13 @@ import time
 
 
 google_url = "https://accounts.google.com/signin/v2/identifier?hl=en&passive=true&continue=https%3A%2F%2Fwww.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
-school_url = "https://xx.xxxxxx.org/"
-school_login = ['xxxxx@xxxxx.net']  # [1] == password env 
+school_url = "https://xxxxxx.xxxx.org/"
+school_login = ['xxxxxx@xxxxxx.net']  # [1] == password but env will be used
 youtube_url = "https://www.youtube.com/results?search_query="
 google_url = "https://www.google.com/search?q="
 spotify_url = "https://open.spotify.com/"
-default_email = 'xxxxxx' 
-ifttApi = "xxxxxxxxxxxxxxx/" 
+default_email = 'xxxxxx'  # hide this
+ifttApi = "xxxxxxxxxxxxxx/"  # hide this
 
 
 def help():
@@ -172,6 +172,37 @@ def youtubeDefault():
     # pyautogui.press('enter')
 
 
+def clean():
+    print("need root acces!")
+    os.system("sudo -v")
+    print("Cleaning firefox history...")
+    os.system("sudo open -a firefox")
+    time.sleep(1.5)
+    pyautogui.hotkey("shift", "command", "delete")
+    time.sleep(0.3)
+    pyautogui.press("enter")
+    pyautogui.hotkey("command", "q")
+    time.sleep(0.5)
+    print("Hold on tight cleaning safari history..")
+    os.system("open -a safari")
+    time.sleep(0.3)
+    pyautogui.hotkey("ctrl", "optionleft", "enter")
+    time.sleep(0.2)
+    pyautogui.hotkey("ctrl", "option", "h")
+    time.sleep(0.4)
+    pyautogui.mouseDown(856, 185)
+    pyautogui.mouseUp()
+    time.sleep(0.2)
+    print("Emptying safari chaches")
+    pyautogui.hotkey("option", "command", "e")
+    time.sleep(0.3)
+    print("Safari cleaning complete")
+    pyautogui.hotkey("command", "q")
+    print(f"Cleaning files..{os.getcwd()}")
+    os.system("bash " + os.getcwd()+"/bin/clean.sh")
+    os.system("cd;rm -rf .zsh_history")
+
+
 def peelSchool(what):
     openUrl(school_url)
     clear()
@@ -194,7 +225,7 @@ def spotify(song):
     pyautogui.press('enter')
     time.sleep(4)
     clear()
-    pyautogui.typewrite('xxxxxxxxxxxxx@gmail.com')
+    pyautogui.typewrite('xxxxxxxxxx@gmail.com')
     time.sleep(1)
     pyautogui.press('enter')
     time.sleep(1)
@@ -268,11 +299,12 @@ elif argv[1] == 'tv':
     tv(argv[2])
 
 elif argv[1] == 'clean':
-    print("need root acces!")
-    os.system("sudo -v")
-    os.system("sudo open -a firefox")
-    print(f"cleaning files..{os.getcwd()}")
-    os.system("bash " + os.getcwd()+"/bin/clean.sh")
+    clean()
+
+elif argv[1] == 'shutdown' or argv[1] == 'shut':
+    i = input("after how many minutes? ")
+    print(i, "minutes starting now...")
+    os.system(f"sudo shutdown -h +{i}")
 
 elif argv[1] == '-h' or argv[1] == '--help':
     help()
