@@ -4,16 +4,17 @@ import pyautogui
 import os
 from sys import argv
 import time
+from random import randint
 
 
 google_url = "https://accounts.google.com/signin/v2/identifier?hl=en&passive=true&continue=https%3A%2F%2Fwww.google.com%2F&flowName=GlifWebSignIn&flowEntry=ServiceLogin"
-school_url = "https://xxxxxx.xxxx.org/"
-school_login = ['xxxxxx@xxxxxx.net']  # [1] == password but env will be used
+school_url = "https://byod.peelschools.org/"
+school_login = [os.getenv("pdsb_EMAIL")]  # array is unnesessary but ehh
 youtube_url = "https://www.youtube.com/results?search_query="
 google_url = "https://www.google.com/search?q="
 spotify_url = "https://open.spotify.com/"
-default_email = 'xxxxxx'  # hide this
-ifttApi = "xxxxxxxxxxxxxx/"  # hide this
+default_email = os.getenv("a36_EMAIL").split("@")[0]
+ifttApi = os.getenv("iftt_API_KEY")
 
 
 def help():
@@ -46,20 +47,24 @@ usage: babe [keyword] [name/query]
         example: ./babe code html
         example: ./babe code web_template
 
-    clean 
-        example: ./babe clean <-- purges cache, logs.. 
+    clean
+        example: ./babe clean <-- purges cache, logs..
 
     ping [device]
-        example: ./babe ping iPhone 
-        example: ./babe ping phone 
+        example: ./babe ping iPhone
+        example: ./babe ping phone
 
     lamp [state]
-        example: ./babe lamp on 
-        example: ./babe lamp off 
+        example: ./babe lamp on
+        example: ./babe lamp off
 
     tv [state]
-        example: ./babe tv on 
-        example: ./babe tv off 
+        example: ./babe tv on
+        example: ./babe tv off
+    
+    shutdown [minutes]
+        example: ./babe shutdown 3
+        example: ./babe shutdown 152
 
 
     ''')
@@ -173,6 +178,10 @@ def youtubeDefault():
 
 
 def clean():
+    if randint(0, 10) < 1:   # restarts touch bar rarely
+        print("killing touch bar..")
+        os.system("pkill \"Touch Bar agent\"; killall \"ControlStrip\";")
+        print("reviving.. touch bar")
     print("need root acces!")
     os.system("sudo -v")
     print("Cleaning firefox history...")
@@ -201,6 +210,21 @@ def clean():
     print(f"Cleaning files..{os.getcwd()}")
     os.system("bash " + os.getcwd()+"/bin/clean.sh")
     os.system("cd;rm -rf .zsh_history")
+    if len(os.listdir(f"{os.getcwd()}/Downloads")) > 0:
+        print("\n\n")
+        for i in os.listdir(f"{os.getcwd()}/Downloads"):
+            print(f"--> {i}")
+        ask = input(
+            "Here are all the files and folders in downloads directory,\nwould you like to permanently delete them?: ")
+        if ask.lower() == 'y':
+            print("removing all files from downloads...")
+            os.system("rm -rf ~/Downloads")
+            print("done...")
+            os.system(f"mkdir {os.getcwd()}/Downloads")
+            exit("cleaning complete...")
+
+        else:
+            exit("cleaning complete...")
 
 
 def peelSchool(what):
@@ -210,7 +234,7 @@ def peelSchool(what):
     pyautogui.press('enter')
     time.sleep(2)
     pyautogui.press('enter')
-    pressTab(8)
+    pressTab(9)
     pyautogui.press('enter')
     time.sleep(2)
     pyautogui.typewrite(what)
@@ -225,7 +249,7 @@ def spotify(song):
     pyautogui.press('enter')
     time.sleep(4)
     clear()
-    pyautogui.typewrite('xxxxxxxxxx@gmail.com')
+    pyautogui.typewrite(os.getenv("a36_EMAIL"))
     time.sleep(1)
     pyautogui.press('enter')
     time.sleep(1)
@@ -299,7 +323,10 @@ elif argv[1] == 'tv':
     tv(argv[2])
 
 elif argv[1] == 'clean':
-    clean()
+    try:
+        clean()
+    except KeyboardInterrupt:
+        exit("Process stopped.")
 
 elif argv[1] == 'shutdown' or argv[1] == 'shut':
     i = input("after how many minutes? ")
