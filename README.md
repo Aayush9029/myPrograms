@@ -1,5 +1,6 @@
 # myPrograms
-*Small python programs and subroutines that makes things a bit easier.*
+*All of my projects / files and website backups*
+*Which i go back to or use it as a template*
 
 ### These are the collection of all those python default library files that makes life as a developer or a power user a litlle better
 
