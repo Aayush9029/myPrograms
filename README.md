@@ -3,6 +3,10 @@
 *Which i go back to or use it as a template*
 
 ---
+> Delete Google Drive Files (BULK deleter)
+<img src="https://raw.githubusercontent.com/Aayush9029/myPrograms/master/deleteGif.gif">
+
+---
 
 > Compress.py (Bulk Image resizer) 
 
