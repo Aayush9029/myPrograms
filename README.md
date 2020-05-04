@@ -13,21 +13,6 @@
 >*requirements == PIL*
 
 ---
-
-> babe.py [Personal Terminal assistant ] (catch needs some work for it to work on your device)
-
-> *requirements == pyautogui, macOS, firefox (macOs, firefox are optional **will work only for that setup out of the box**)*
-
----
-
-> clean.sh [MacOs cleaning script automation] MacOs junk cleaner and brew updater (cleans logs and caches while updating brew apps)
-
-> *requirements == unix, macOS,  **will work for that setup out of the box**)*
-
----
-
-> spotautoclicker.py [MacOs autoclicking script prevents laptop from going to sleep] (works with netflix, youtube, spotify app that requires user input if used in backgorund for more than few hours)
-
 > *requirements == brightness  **(will work without the module but some functionallity will be limited **)*
 
 ------
