@@ -12,6 +12,12 @@
 <img src="https://raw.githubusercontent.com/Aayush9029/myPrograms/master/vimFlask.gif">
 
 ---
+
+> Quotes Generator (Generate Images / video from json data)
+<img src="https://raw.githubusercontent.com/Aayush9029/myPrograms/master/quotesGenerator.gif" width=720px>
+
+
+---
 > Compress.py (Bulk Image resizer) 
 >*requirements == PIL*
 ---
