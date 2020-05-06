@@ -1,0 +1,31 @@
+#quotes {
+  background: red;
+  padding: 200px;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  background-color: rgb(0, 0, 0);
+  color: aliceblue;
+  font-size: 80px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  overflow: hidden;
+  background: rgb(0, 0, 0);
+  height: 100vh;
+  position: relative;
+  /* border: 3px solid green; */
+}
+
+#saying {
+}
+
+#by {
+  margin-top: 40px;
+  color: rgb(155, 255, 177);
+  font-size: 70px;
+  text-align: right;
+}
