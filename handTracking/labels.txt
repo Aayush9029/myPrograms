@@ -1,4 +1,0 @@
-0 handUp
-1 handRight
-2 handLeft
-3 None

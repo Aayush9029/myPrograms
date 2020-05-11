@@ -1,1 +1,0 @@
-Goto googles console, download config.json and put it in same dir
