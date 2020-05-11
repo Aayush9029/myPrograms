@@ -438,11 +438,26 @@ a {
   }
 }
 
-.img-fluid {
-  background-image: url("/img/clip2.png");
+.front {
+  background: rgb(1, 16, 29);
+  background-image: url("/img/clip.png");
   height: 546px;
   background-repeat: no-repeat;
   background-size: contain;
-  border: 1px solid cyan;
-  box-shadow: 10px 10px 20px rgb(0, 162, 255);
+  border: 20px solid rgb(14, 23, 31);
+  box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+.img-fluid {
+  margin: 20px;
+  height: 546px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.5);
+
+  transition: 0.75s;
+}
+
+.img-fluid:hover {
+  box-shadow: 1px 16px 25px rgba(0, 0, 0, 0.671);
 }
