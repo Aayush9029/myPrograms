@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PeerJs Template</title>
+    <script src="https://unpkg.com/peerjs@1.2.0/dist/peerjs.min.js"></script>
+  </head>
+  <body>
+    <p id="peerIdDisplay" style="font-family: verdana;">
+      <b>My peer ID is: </b>
+    </p>
+    <hr style="width: 100%;" />
+    <p id="instructions">Enter another peer's ID to connect to them..</p>
+    <form>
+      <input type="text" id="peerIdTxtBox" />
+    </form>
+    <button id="conToPeerBtn" OnClick="ConnectToPeer()">Connect To Peer</button>
+    <button id="sendMessageBtn" OnClick="SendMessage()">Send Message</button>
+    <script src="main.js"></script>
+  </body>
+</html>
