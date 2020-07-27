@@ -1,0 +1,28 @@
+
+
+
+# Dataset:
+    # downloader.py downloads images according to datasets.
+
+#To clean the images one can use:
+
+#requirements open-cv
+
+def removeInvalid(dirPaths):
+    for dirPath in dirPaths:
+        for img in os.listdir(dirPath):
+            for invalid in os.listdir('invalid'):
+                try:
+                    current_image_path = str(dirPath)+'/'+str(img)
+                    invalid = cv2.imread('invalid/'+str(invalid))
+                    question = cv2.imread(current_image_path)
+                    if invalid.shape == question.shape and not(np.bitwise_xor(invalid,question).any()):
+                        os.remove(current_image_path)
+                        break
+
+                except Exception as e:
+                    print(str(e))
+
+#Then train using your own trainer / apple's ml model
+
+
